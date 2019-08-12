@@ -49,4 +49,9 @@
 			$data = (object) $obj->eliminar();
 			echo "<script>location.href='?vista=vistas/usuarios/usuarios&mensaje=".$data->mensaje."';</script>";
 		break;
+
+		case 'resetear_clave':
+			$data = (object)$obj->recuperar_clave();
+			echo "<script>location.href='?vista=vistas/sesion/iniciar.sesion&mensaje=".$data->mensaje."';</script>";
+		break;
 	}

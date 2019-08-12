@@ -1,5 +1,4 @@
 <?php
-
 	require_once('modelos/modelo.bd.php');
 
 	class modelo_usuario extends modelo_bd{
@@ -160,5 +159,70 @@
 
 			return $data;
 		}
+
+		public function recuperar_clave(){
+			$data = [];
+
+			try{
+				$result = $this->conexion->query("select * from usuarios where correo = '".$this->correo."'");
+				if($result->num_rows > 0){
+					$this->clave = $this->generateRandomString();
+					if($this->conexion->query("update usuarios set clave = md5('".$this->clave."') where correo = '".$this->correo."'")){
+						$this->enviar_clave_reseteada();
+						$data['error'] = 0;
+						$data['mensaje'] = 'Clave Resetada con Exito!!';
+					}else{
+						$data['error'] = 1;
+						$data['mensaje'] = 'Error al tratar de resetear la clave!!';
+					}
+				}else{
+					$data['error'] = 2;
+					$data['mensaje'] = 'No se encontraron Datos!!';
+				}
+			}catch(Exception $e){
+				$data['error'] = 3;
+				$data['mensaje'] = 'Error al tratar de realizar la Consulta!!';
+			}
+
+			return $data;
+		}
+
+		public function enviar_clave_reseteada(){
+			require_once dirname(__FILE__).'/../libreria_correo/mailer/src/Exception.php';
+			require_once dirname(__FILE__).'/../libreria_correo/mailer/src/PHPMailer.php';
+			require_once dirname(__FILE__).'/../libreria_correo/mailer/src/SMTP.php';
+
+			$data = true;
+			$mail = new \PHPMailer\PHPMailer\PHPMailer();
+			$mail->IsSMTP();
+			$mail->SMTPDebug  = 0;
+			$mail->Host       = 'smtp.gmail.com';
+			$mail->Port       = 587;
+			$mail->SMTPSecure = 'tls';
+			$mail->SMTPAuth   = true;
+			$mail->Username   = "jquerysencillo@gmail.com";
+			$mail->Password   = "Car2244los*";
+			$mail->SetFrom('jquerysencillo@gmail.com', 'Sigenoc Soporte Tecnico');
+			$mail->AddAddress($this->correo);
+			$mail->Subject = 'Sigenoc - Reseteo de Clave';
+			$mail->MsgHTML("<p>Se ha reseteado su clave de forma exitosa, esta es su nueva clave: <b>".$this->clave."</b></p>");
+			$mail->AltBody = '';
+
+			if(!$mail->Send()) {
+			  $data = false;
+			}
+
+			return $data;
+		}
 		
+
+		public function generateRandomString($length = 8) {
+		    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		    $charactersLength = strlen($characters);
+		    $randomString = '';
+		    for ($i = 0; $i < $length; $i++) {
+		        $randomString .= $characters[rand(0, $charactersLength - 1)];
+		    }
+		    return $randomString;
+		}
 	}

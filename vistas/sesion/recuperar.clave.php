@@ -6,7 +6,7 @@
 ?>
 <div class="login">
 	<h1>Recuperar Clave</h1>
-	<form method="POST" autocomplete="off" action="?vista=vistas/sesion/iniciar.sesion&operacion=recuperar_clave">
+	<form method="POST" autocomplete="off" action="?vista=vistas/sesion/recuperar.clave&operacion=resetear_clave">
 		<table>
 			<tr>
 				<td>Correo: </td>
