@@ -1,7 +1,7 @@
 <?php
-	require_once dirname(__FILE__) . '/../libreria_correo/PHPMailer/src/Exception.php';
-	require_once dirname(__FILE__) . '/../libreria_correo/PHPMailer/src/PHPMailer.php';
-	require_once dirname(__FILE__) . '/../libreria_correo/PHPMailer/src/SMTP.php';
+	require_once dirname(__FILE__).'/../libreria_correo/mailer/src/Exception.php';
+	require_once dirname(__FILE__).'/../libreria_correo/mailer/src/PHPMailer.php';
+	require_once dirname(__FILE__).'/../libreria_correo/mailer/src/SMTP.php';
 
 	require_once('modelos/modelo.bd.php');
 
