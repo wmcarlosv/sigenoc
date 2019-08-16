@@ -196,13 +196,13 @@
 			$mail = new \PHPMailer\PHPMailer\PHPMailer();
 			$mail->IsSMTP();
 			$mail->SMTPDebug  = 0;
-			$mail->Host       = 'smtp.gmail.com';
-			$mail->Port       = 587;
-			$mail->SMTPSecure = 'tls';
+			$mail->Host       = 'premium53.web-hosting.com';
+			$mail->Port       = 465;
+			$mail->SMTPSecure = 'ssl';
 			$mail->SMTPAuth   = true;
-			$mail->Username   = "jquerysencillo@gmail.com";
+			$mail->Username   = "cvargas@frontuari.net";
 			$mail->Password   = "Car2244los*";
-			$mail->SetFrom('jquerysencillo@gmail.com', 'Sigenoc Soporte Tecnico');
+			$mail->SetFrom('cvargas@frontuari.net', 'Sigenoc Administrativo');
 			$mail->AddAddress($this->correo);
 			$mail->Subject = 'Sigenoc - Reseteo de Clave';
 			$mail->MsgHTML("<p>Se ha reseteado su clave de forma exitosa, esta es su nueva clave: <b>".$this->clave."</b></p>");
