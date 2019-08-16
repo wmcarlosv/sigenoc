@@ -17,12 +17,12 @@
 <div class="panel">
 	<h2><?=$title?></h2>
 	<div class="cuerpo-panel">
-			<form method="POST" action="<?=$action?>" autocomplete="off">
+			<form method="POST" action="<?=$action?>" onsubmit="return validateBeforeSend();" autocomplete="off">
 			<table class="table">
 				<tbody>
 					<tr>
-						<td>Nombre: </td>
-						<td><input type="text" name="nombre" value="<?=@$data->nombre?>" id="nombre" /></td>
+						<td>Nombre: <span class="requerido">*<span></td>
+						<td><input type="text" name="nombre" data-validate="required" value="<?=@$data->nombre?>" id="nombre" /></td>
 					</tr>
 					<tr>
 						<td><button>Guardar</button></td>

@@ -40,17 +40,17 @@
 <div class="panel">
 	<h2><?=$title?></h2>
 	<div class="cuerpo-panel">
-			<form method="POST" onsubmit="return enviar()" action="<?=$action?>" autocomplete="off">
+			<form method="POST" onsubmit="return validateBeforeSend();" action="<?=$action?>" autocomplete="off">
 
 			<table class="table">
 				<tbody>
 					<tr>
-						<td>Titulo: </td>
-						<td>Contenido</td>
+						<td>Titulo: <span class="requerido">*<span></td>
+						<td>Contenido: <span class="requerido">*<span></td>
 					</tr>
 					<tr>
-						<td style="vertical-align: top;"><input type="text" name="titulo" value="<?=@$data->titulo?>" id="titulo" /></td>
-						<td><textarea cols="25" name="contenido" id="contenido"><?=@$data->contenido?></textarea></td>
+						<td style="vertical-align: top;"><input type="text" data-validate="required" name="titulo" value="<?=@$data->titulo?>" id="titulo" /></td>
+						<td><textarea cols="25" data-validate="required" name="contenido" id="contenido"><?=@$data->contenido?></textarea></td>
 					</tr>
 					<tr>
 						<td>

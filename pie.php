@@ -16,12 +16,6 @@
 		}
 	}
 
-	enviar = function(e){
-		if(!confirm("Estas seguro de enviar este Mensaje?")){
-			return false;
-		}
-	}
-
 	buscar = function(table, f){
 		var oscuro = document.getElementById("oscuro");
 		var resultado = document.getElementById("resultado");
@@ -87,6 +81,72 @@
 		var tr = td.parentNode;
 		var tbody = tr.parentNode;
 			tbody.removeChild(tr);
+	}
+
+	function validateBeforeSend(){
+		var inputs = document.querySelectorAll("input,textarea")
+		var cont_errors = 0;
+		var message = "Se han presentado los Siguientes Errores:\n";
+		for(var i=0;i < inputs.length; i++){
+			if(inputs[i].hasAttribute("data-validate")){
+				var vals = inputs[i].getAttribute("data-validate").split(",");
+				for(var e=0;e < vals.length; e++){
+					switch(vals[e]){
+						case 'required':
+							if(!required(inputs[i].value)){
+								message+="--El "+inputs[i].name+" es Obligatorio\n";
+								cont_errors++;
+							}
+						break;
+						case 'email':
+							if(!isValidEmail(inputs[i].value)){
+								message+="--El "+inputs[i].name+" No debe tener el formato Correcto\n";
+								cont_errors++;
+							}
+						break;
+						case 'numeros':
+							if(!onlyNumber(inputs[i].value)){
+								message+="--El "+inputs[i].name+" solo debe contener Numeros\n";
+								cont_errors++;
+							}
+						break;
+					}
+				}
+			}
+		}
+
+		if(cont_errors > 0){
+			alert(message);
+			return false;
+		}else{
+			if(!confirm("Estas seguro de Procesar esta Información?")){
+				return false;
+			}else{
+				return true;	
+			}
+		}
+	}
+
+	function required(input){
+		var regex = /^\s*$/;
+		if(regex.test(input)) {
+	        return false;
+	    }else {
+	        return true;
+	    }
+	}
+
+	function onlyNumber(input){
+		var numbers = /^[0-9]+$/;
+		if(input.match(numbers)) {
+	        return true;
+	    }else {
+	        return false;
+	    }
+	}
+
+	function isValidEmail(mail) { 
+	  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail); 
 	}
 
 	window.onload = load();

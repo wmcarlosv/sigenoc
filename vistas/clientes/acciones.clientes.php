@@ -17,36 +17,36 @@
 <div class="panel">
 	<h2><?=$title?></h2>
 	<div class="cuerpo-panel">
-			<form method="POST" action="<?=$action?>" autocomplete="off">
+			<form method="POST" action="<?=$action?>" onsubmit="return validateBeforeSend();" autocomplete="off">
 			<table class="table">
 				<tbody>
 					<tr>
-						<td>Rif: </td>
-						<td><input type="text" name="rif" value="<?=@$data->rif?>" id="rif" /></td>
+						<td>Rif: <span class="requerido">*<span></td>
+						<td><input type="text" name="rif" data-validate="required" value="<?=@$data->rif?>" id="rif" /></td>
 					</tr>
 					<tr>
-						<td>Razon Social: </td>
-						<td><input type="text" name="razon_social" value="<?=@$data->razon_social?>" id="razon_social" /></td>
+						<td>Razon Social: <span class="requerido">*<span></td>
+						<td><input type="text" name="razon_social" data-validate="required" value="<?=@$data->razon_social?>" id="razon_social" /></td>
 					</tr>
 					<tr>
-						<td>Direccion: </td>
-						<td><input type="text" name="direccion" value="<?=@$data->direccion?>" id="direccion" /></td>
+						<td>Direccion: <span class="requerido">*<span></td>
+						<td><input type="text" name="direccion" data-validate="required" value="<?=@$data->direccion?>" id="direccion" /></td>
 					</tr>
 					<tr>
-						<td>Correo: </td>
-						<td><input type="text" name="correo" value="<?=@$data->correo?>" id="correo" /></td>
+						<td>Correo: <span class="requerido">*<span></td>
+						<td><input type="text" name="correo" data-validate="required,email" value="<?=@$data->correo?>" id="correo" /></td>
 					</tr>
 					<tr>
-						<td>Telefono: </td>
-						<td><input type="text" name="telefono" value="<?=@$data->telefono?>" id="telefono" /></td>
+						<td>Telefono: <span class="requerido">*<span></td>
+						<td><input type="text" name="telefono" data-validate="required,numeros" value="<?=@$data->telefono?>" id="telefono" /></td>
 					</tr>
 					<tr>
-						<td>Persona Contacto: </td>
-						<td><input type="text" name="persona_contacto" value="<?=@$data->persona_contacto?>" id="persona_contacto" /></td>
+						<td>Persona Contacto: <span class="requerido">*<span></td>
+						<td><input type="text" name="persona_contacto" data-validate="required" value="<?=@$data->persona_contacto?>" id="persona_contacto" /></td>
 					</tr>
 					<tr>
-						<td>Telefono Persona Contacto: </td>
-						<td><input type="text" name="telefono_persona_contacto" value="<?=@$data->telefono_persona_contacto?>" id="telefono_persona_contacto" /></td>
+						<td>Telefono Persona Contacto: <span class="requerido">*<span></td>
+						<td><input type="text" data-validate="required,numeros" name="telefono_persona_contacto" value="<?=@$data->telefono_persona_contacto?>" id="telefono_persona_contacto" /></td>
 					</tr>
 					<tr>
 						<td><button>Guardar</button></td>
