@@ -100,7 +100,7 @@
 						break;
 						case 'email':
 							if(!isValidEmail(inputs[i].value)){
-								message+="--El "+inputs[i].name+"debe tener el formato Correcto\n";
+								message+="--El "+inputs[i].name+" debe tener el formato Correcto\n";
 								cont_errors++;
 							}
 						break;
